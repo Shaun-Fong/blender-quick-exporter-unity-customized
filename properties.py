@@ -58,6 +58,11 @@ class QUICKEXPORTER_ExportPackageSettingsUnity(bpy.types.PropertyGroup):
 		description = "Name the layer",
 		default = "Default"
 	)
+	
+	prefablink: StringProperty(
+		name = "PrefabLink",
+		default = ""
+	)
 
 	contributegi: BoolProperty(
 		name = "Contribute GI",

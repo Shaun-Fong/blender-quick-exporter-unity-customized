@@ -69,7 +69,7 @@ class QUICKEXPORTER_OT_export_single(bpy.types.Operator):
 		
 		for obj in context.view_layer.objects:
 			obj['Layer'] = settings.unity.layer
-
+			obj['PrefabLink'] = settings.unity.prefablink
 			staticflags = ""
 			if settings.unity.contributegi:
 				staticflags += "Contribute GI,"
@@ -90,7 +90,7 @@ class QUICKEXPORTER_OT_export_single(bpy.types.Operator):
 		
 		path = bpy.path.abspath(package.path)
 		if not path.lower().endswith('.fbx'):
-			path = bpy.path.ensure_ext(bpy.path.abspath(package.path), package.name + '.fbx')
+			path = bpy.path.ensure_ext(bpy.path.abspath(package.path), '\\' +package.name + '.fbx')
 			
 		print(path)
 		

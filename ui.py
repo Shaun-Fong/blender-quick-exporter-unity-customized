@@ -41,6 +41,7 @@ def draw_settings(parent, package):
 		unity_box = fbx_settings_column.box()
 		if draw_settings_foldout(unity_box, package.settings.unity, "Unity"):
 			unity_box.prop(package.settings.unity, "layer")
+			unity_box.prop(package.settings.unity, "prefablink")
 			unity_box.label(text="Static Flags")
 			unity_box.prop(package.settings.unity, "contributegi")
 			unity_box.prop(package.settings.unity, "occluderstatic")
