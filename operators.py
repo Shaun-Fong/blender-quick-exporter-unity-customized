@@ -67,6 +67,16 @@ class QUICKEXPORTER_OT_export_single(bpy.types.Operator):
 			print("Quick Exporter:    + " + obj.pointer.name)
 			obj.pointer.select_set(True)
 		
+		for obj in context.view_layer.objects:
+			obj['Layer'] = settings.unity.layer
+			obj['Contribute GI'] = settings.unity.contributegi
+			obj['Occluder Static'] = settings.unity.occluderstatic
+			obj['Batching Static'] = settings.unity.batchingstatic
+			obj['Navigation Static'] = settings.unity.navigationstatic
+			obj['Occludee Static'] = settings.unity.occludeestatic
+			obj['Off Mesh Link Generation'] = settings.unity.offmeshlinkgeneration
+			obj['Reflection Probe Static'] = settings.unity.reflectionprobestatic
+		
 		path = bpy.path.abspath(package.path)
 		if not path.lower().endswith('.fbx'):
 			path = bpy.path.ensure_ext(bpy.path.abspath(package.path), package.name + '.fbx')

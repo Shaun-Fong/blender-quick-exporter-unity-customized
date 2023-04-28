@@ -38,6 +38,18 @@ def draw_settings(parent, package):
 		if draw_settings_foldout(include_box, package.settings.include, "Include"):
 			include_box.prop(package.settings.include, "custom_properties")
 
+		unity_box = fbx_settings_column.box()
+		if draw_settings_foldout(unity_box, package.settings.unity, "Unity"):
+			unity_box.prop(package.settings.unity, "layer")
+			unity_box.label(text="Static Flags")
+			unity_box.prop(package.settings.unity, "contributegi")
+			unity_box.prop(package.settings.unity, "occluderstatic")
+			unity_box.prop(package.settings.unity, "batchingstatic")
+			unity_box.prop(package.settings.unity, "navigationstatic")
+			unity_box.prop(package.settings.unity, "occludeestatic")
+			unity_box.prop(package.settings.unity, "offmeshlinkgeneration")
+			unity_box.prop(package.settings.unity, "reflectionprobestatic")
+
 		transform_box = fbx_settings_column.box()
 		if draw_settings_foldout(transform_box, package.settings.transform, "Transform"):
 			transform_box.prop(package.settings.transform, "scale")
@@ -77,7 +89,7 @@ def draw_settings(parent, package):
 
 class QUICKEXPORTER_PT_panel(bpy.types.Panel):
 	bl_idname = 'QUICKEXPORTER_PT_panel'
-	bl_label = 'Quick Exporter'
+	bl_label = 'Quick Exporter - Unity Customized'
 	bl_space_type = 'VIEW_3D'
 	bl_region_type = 'UI'
 	bl_category = 'Quick Exporter'

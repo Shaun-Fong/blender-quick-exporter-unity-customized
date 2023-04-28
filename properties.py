@@ -43,6 +43,64 @@ class QUICKEXPORTER_ExportPackageSettingsInclude(bpy.types.PropertyGroup):
 		default = True
 	)
 
+class QUICKEXPORTER_ExportPackageSettingsUnity(bpy.types.PropertyGroup):
+	
+	def copy_from(self, old):
+		self.custom_properties = old.custom_properties
+
+	expanded: BoolProperty(
+		name = "Expanded",
+		default = True
+	)
+
+	layer: StringProperty(
+		name = "Layer",
+		description = "Name the layer",
+		default = "Default"
+	)
+
+	contributegi: BoolProperty(
+		name = "Contribute GI",
+		description = "Contribute GI",
+		default = False
+	)
+
+	occluderstatic: BoolProperty(
+		name = "Occluder Static",
+		description = "Occluder Static",
+		default = False
+	)
+
+	batchingstatic: BoolProperty(
+		name = "Batching Static",
+		description = "Batching Static",
+		default = False
+	)
+
+	navigationstatic: BoolProperty(
+		name = "Navigation Static",
+		description = "Navigation Static",
+		default = False
+	)
+
+	occludeestatic: BoolProperty(
+		name = "Occludee Static",
+		description = "Occludee Static",
+		default = False
+	)
+
+	offmeshlinkgeneration: BoolProperty(
+		name = "Off Mesh Link Generation",
+		description = "Off Mesh Link Generation",
+		default = False
+	)
+
+	reflectionprobestatic: BoolProperty(
+		name = "Reflection Probe Static",
+		description = "Reflection Probe Static",
+		default = False
+	)
+
 class QUICKEXPORTER_ExportPackageSettingsTransform(bpy.types.PropertyGroup):
 
 	def copy_from(self, old):
@@ -303,6 +361,11 @@ class QUICKEXPORTER_ExportPackageSettings(bpy.types.PropertyGroup):
 		name="Include",
 		type=QUICKEXPORTER_ExportPackageSettingsInclude
 	)
+	
+	unity: PointerProperty(
+		name="Unity",
+		type=QUICKEXPORTER_ExportPackageSettingsUnity
+	)
 
 	transform: PointerProperty(
 		name="Transform",
@@ -406,6 +469,7 @@ def register():
 	bpy.utils.register_class(QUICKEXPORTER_ObjectPointer)
 	bpy.utils.register_class(QUICKEXPORTER_CollectionPointer)
 	bpy.utils.register_class(QUICKEXPORTER_ExportPackageSettingsInclude)
+	bpy.utils.register_class(QUICKEXPORTER_ExportPackageSettingsUnity)
 	bpy.utils.register_class(QUICKEXPORTER_ExportPackageSettingsTransform)
 	bpy.utils.register_class(QUICKEXPORTER_ExportPackageSettingsGeometry)
 	bpy.utils.register_class(QUICKEXPORTER_ExportPackageSettingsArmature)
@@ -420,6 +484,7 @@ def unregister():
 	bpy.utils.unregister_class(QUICKEXPORTER_Data)
 	bpy.utils.unregister_class(QUICKEXPORTER_ExportPackage)
 	bpy.utils.unregister_class(QUICKEXPORTER_ExportPackageSettingsInclude)
+	bpy.utils.unregister_class(QUICKEXPORTER_ExportPackageSettingsUnity)
 	bpy.utils.unregister_class(QUICKEXPORTER_ExportPackageSettingsTransform)
 	bpy.utils.unregister_class(QUICKEXPORTER_ExportPackageSettingsGeometry)
 	bpy.utils.unregister_class(QUICKEXPORTER_ExportPackageSettingsArmature)
