@@ -69,13 +69,24 @@ class QUICKEXPORTER_OT_export_single(bpy.types.Operator):
 		
 		for obj in context.view_layer.objects:
 			obj['Layer'] = settings.unity.layer
-			obj['Contribute GI'] = settings.unity.contributegi
-			obj['Occluder Static'] = settings.unity.occluderstatic
-			obj['Batching Static'] = settings.unity.batchingstatic
-			obj['Navigation Static'] = settings.unity.navigationstatic
-			obj['Occludee Static'] = settings.unity.occludeestatic
-			obj['Off Mesh Link Generation'] = settings.unity.offmeshlinkgeneration
-			obj['Reflection Probe Static'] = settings.unity.reflectionprobestatic
+
+			staticflags = ""
+			if settings.unity.contributegi:
+				staticflags += "Contribute GI,"
+			if settings.unity.occluderstatic:
+				staticflags += "Occluder Static,"
+			if settings.unity.batchingstatic:
+				staticflags += "Batching Static,"
+			if settings.unity.navigationstatic:
+				staticflags += "Navigation Static,"
+			if settings.unity.occludeestatic:
+				staticflags += "Occludee Static,"
+			if settings.unity.offmeshlinkgeneration:
+				staticflags += "Off Mesh Link Generation,"
+			if settings.unity.reflectionprobestatic:
+				staticflags += "Reflection Probe Static"
+			staticflags = staticflags.rstrip(',')
+			obj['StaticFlags'] = staticflags
 		
 		path = bpy.path.abspath(package.path)
 		if not path.lower().endswith('.fbx'):
